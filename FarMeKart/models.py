@@ -1,10 +1,26 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 #from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 from datetime import date
+from django.contrib.auth.models import AbstractUser,User
+
+
+
+class User(AbstractUser):
+	t = (
+		(1,'Farmer'),
+		(2,'Customer'),
+		(3,'guest'),
+		)
+	role = models.IntegerField(default=3,choices=t)
+	g=[('M',"Male"),('F','Female')]
+	age=models.IntegerField(default=10)
+	gender=models.CharField(max_length=10,choices=g,default="F")
+	impf=models.ImageField(upload_to='profiles/',default="profile.jpg")
+	mobile_number=models.CharField(null=True,default="1234567890",max_length=10)
+	address=models.CharField(max_length=200,default="Tirupathi")
 
 class ExtPro(models.Model):
 	is_farmer = models.BooleanField(default=False)

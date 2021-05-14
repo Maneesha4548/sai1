@@ -20,7 +20,8 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'ct' %}">ContactUs</a>
       </li>
-      {% elif not user.extpro.is_farmer %}
+      {% else %}
+       {% if user.role == 2 %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'hm' %}">Home</a>
       </li>
@@ -34,7 +35,10 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'cb' %}">view</a>
       </li>
-      {% elif user.extpro.is_farmer %}
+      {% elif user.role == 1 %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'hm' %}">Home</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'ca' %}">Cart</a>
       </li>
@@ -45,7 +49,32 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'da' %}">Vegetables/Fruits</a>
       </li>
+      {% elif user.is_superuser %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'hm' %}">Home</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="{% url 'gperm' %}">Grant Permission</a>
       
+    </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'hm' %}">Home</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'au' %}">AboutUs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ct' %}">ContactUs</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="{% url 'pm' %}">Make Permission</a>
+    </li>
+
+      
+      {% endif %}
+
       {% endif %}
 
     </ul>
@@ -58,7 +87,11 @@
         {% else %}
         <li class="dropdown">
       <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown">
-        {{user.username}}
+        {% if user.role == 1 or  user.role == 2 or user.is_superuser %}
+      {{user.username}}
+       {% else %}
+       Guest
+       {% endif %}
       </a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="{% url 'cg' %}">change password</a>

@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
-from FarMeKart.forms import UsregFo,ChpwdForm,UpdPfle,Vegfr,UpdVgtab,Userp
+from FarMeKart.forms import UsregFo,ChpwdForm,UpdPfle,Vegfr,UpdVgtab,Userp,Usperm
 from django.contrib.auth.decorators import login_required
 from farmer import settings
 from django.core.mail import send_mail
-from django.contrib.auth.models import User
-from FarMeKart.models import Vegpro
+from django.contrib.auth.models import User,AbstractUser
+from FarMeKart.models import Vegpro,User
+import sys
 
 # Create your views here.
 
@@ -124,6 +125,30 @@ def cart(re):
 def usr(re):
 	s=Userp()
 	return render(re,'html/user.html',{'a':s})
+def requestform(rq):
+	e2=User.objects.get(id=rq.user.id)
+	if rq.method=='POST':
+		print(e2)
+		e2.age=rq.POST['age']
+		e2.gender=rq.POST['gender']
+		e2.impf=rq.POST['fil']
+		e2.address=rq.POST['ad']
+		e2.mobile_number=rq.POST['pn']
+		e2.save()
+		return redirect('/lg')
+	return render(rq,'html/requestp.html')
+def adminpermissions(request):
+	ty=User.objects.all()
+	return render(request,'html/adminpermissions.html',{'q':ty})
+def updatepermissions(request,k):
+	r=User.objects.get(id=k)
+	if request.method == "POST":
+		k=Usperm(request.POST,instance=r)
+		if k.is_valid():
+			k.save()
+			return redirect('/gper')
+	k2= Usperm(instance=r)
+	return render(request,'html/updatepermissions.html',{'y':k2})
 
 
 
