@@ -8,7 +8,7 @@ urlpatterns = [
     path('reg/',views.registration,name="rg"),
     path('lgo/',ad.LogoutView.as_view(template_name='html/logout.html'),name="logo"),
     path('ch/',views.cgf,name="cg"),
-    path('it/',views.items,name="it"),
+    # path('it',views.items,name="it"),
     path('pro/',views.profile,name="pf"),
     path('upr/',views.updprofile,name="upf"),
     path('ds/',views.dashboard,name="dsh"),

@@ -67,6 +67,14 @@ class Vegfr(forms.ModelForm):
 	class Meta:
 		model = Vegpro
 		fields = ["item_type","item_name","quantity","price","impf"]
+		widgets={
+		"quantity":forms.NumberInput(attrs={
+			"class":"form-control",
+			"max":"500",
+			"min":"150",
+
+			})
+		}
 
 
 

@@ -9,7 +9,7 @@ import sys
 
 # Create your views here.
 
-def items(re):
+def home(re):
 	i = Vegpro.objects.filter(a_id=re.user.id)
 	s = Vegpro.objects.all()
 	k = {}
@@ -18,10 +18,9 @@ def items(re):
 		k[m.id] = m.item_type,m.item_name,m.quantity,m.price,m.impf,m.is_stock,m.create_date,g.username
 	f = k.values()
 	return render(re,'html/cart1.html',{'it':i,'d':f})
-
-def home(re):
-	return render(re,"html/home.html")
-
+	
+# def home(re):
+# 	return render(re,"html/home.html")
 def contact(re):
 	return render(re,"html/contact.html")
 
