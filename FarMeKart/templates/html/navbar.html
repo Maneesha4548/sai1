@@ -20,35 +20,34 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'ct' %}">ContactUs</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'it' %}">Vegetales/Fruits</a>
+      </li>
       {% else %}
        {% if user.role == 2 %}
+    
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'hm' %}">Home</a>
-      </li>
-            <li class="nav-item">
-        <a class="nav-link" href="{% url 'ca' %}">Cart</a>
+        <a class="nav-link" href="{% url 'ca' %}">Items</a>
       </li>
       
       <li class="nav-item">
         <a class="nav-link" href="{% url 'dsh' %}">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'cb' %}">view</a>
+        <a class="nav-link" href="{% url 'cb' %}">My orders</a>
       </li>
       {% elif user.role == 1 %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'hm' %}">Home</a>
+        <a class="nav-link" href="{% url 'da' %}">Add Items</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="{% url 'ca' %}">Cart</a>
       </li>
+       -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'fdsh' %}">Received Orders</a>
+      </li>
       
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'fdsh' %}">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'da' %}">Vegetables/Fruits</a>
-      </li>
       {% elif user.is_superuser %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'hm' %}">Home</a>
@@ -58,15 +57,9 @@
       
     </li>
       {% else %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'hm' %}">Home</a>
-      </li>
       
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'au' %}">AboutUs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'ct' %}">ContactUs</a>
+        <a class="nav-link" href="{% url 'it' %}">Vegetales/Fruits</a>
       </li>
       <li class="nav-item">
       <a class="nav-link" href="{% url 'pm' %}">Make Permission</a>
