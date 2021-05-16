@@ -145,7 +145,8 @@ def requestform(rq):
 		e2.mobile_number=rq.POST['pn']
 		e2.save()
 		return redirect('/lg')
-	return render(rq,'html/requestp.html')
+	k2= Usperm(instance=e2)
+	return render(rq,'html/requestp.html',{'y':k2})
 def adminpermissions(request):
 	ty=User.objects.all()
 	return render(request,'html/adminpermissions.html',{'q':ty})
@@ -158,6 +159,15 @@ def updatepermissions(request,k):
 			return redirect('/gper')
 	k2= Usperm(instance=r)
 	return render(request,'html/updatepermissions.html',{'y':k2})
+def userdelete(request,id):
+	c=User.objects.get(id=id)
+	c.delete()
+	c.save()
+	return redirect('/gper')
+		
+		
+	
+
 
 
 
