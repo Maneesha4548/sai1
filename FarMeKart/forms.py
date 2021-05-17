@@ -26,9 +26,10 @@ class UsregFo(UserCreationForm):
 class Usperm(forms.ModelForm):
 	class Meta:
 		model = User
-		fields=["username","role"]
+		fields=["username","role","email"]
 		widgets={
 		 "username":forms.TextInput(attrs={"class":"form-control","readOnly":True,}),
+		  "email":forms.EmailInput(attrs={"class":"form-control","readOnly":True,}),
 		 "role":forms.Select(attrs={"class":"form-control"}),
 		}
 

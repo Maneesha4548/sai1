@@ -21,6 +21,13 @@ class User(AbstractUser):
 	impf=models.ImageField(upload_to='profiles/',default="profile.jpg")
 	mobile_number=models.CharField(null=True,default="1234567890",max_length=10)
 	address=models.CharField(max_length=200,default="Tirupathi")
+	# role = models.IntegerField(default=3,choices=t)
+	# gender=models.CharField(max_length=10)
+	# age=models.IntegerField(default=10)
+	
+	# impf=models.ImageField(upload_to='profiles/',default="profile.jpg")
+
+	# address=models.CharField(max_length=200,default="Tirupathi")
 
 class ExtPro(models.Model):
 	is_farmer = models.BooleanField(default=False)

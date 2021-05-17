@@ -8,7 +8,16 @@ from FarMeKart.models import Vegpro,User
 import sys
 
 # Create your views here.
-
+def veg(re):
+	i = Vegpro.objects.filter(a_id=re.user.id)
+	s = Vegpro.objects.all()
+	k = {}
+	for m in s:
+		g = User.objects.get(id=m.a_id)
+		k[m.id] = m.item_type,m.item_name,m.quantity,m.price,m.impf,m.is_stock,m.create_date,g.username
+	f = k.values()
+	return render(re,'html/veg.html',{'it':i,'d':f})
+	
 def home(re):
 	i = Vegpro.objects.filter(a_id=re.user.id)
 	s = Vegpro.objects.all()
@@ -139,10 +148,8 @@ def requestform(rq):
 	if rq.method=='POST':
 		print(e2)
 		e2.age=rq.POST['age']
-		e2.gender=rq.POST['gender']
 		e2.impf=rq.POST['fil']
 		e2.address=rq.POST['ad']
-		e2.mobile_number=rq.POST['pn']
 		e2.save()
 		return redirect('/lg')
 	k2= Usperm(instance=e2)
