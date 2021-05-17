@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from farmer import settings
 from django.core.mail import send_mail
 from django.contrib.auth.models import User,AbstractUser
-from FarMeKart.models import Vegpro,User
+from FarMeKart.models import Vegpro,User,Cart
 import sys
 
 # Create your views here.
@@ -171,6 +171,27 @@ def userdelete(request,id):
 	c.delete()
 	c.save()
 	return redirect('/gper')
+
+def addcart(request,id):
+	b=Vegpro.objects.get(id=id)
+	c=Cart(user_id=request.user.id,veg_id=id)
+	c.save()
+	count=0
+	data1 = Cart.objects.filter(user_id=request.user.id)
+	for i in data1:
+		count+=1
+	return render(request,'html/addcart.html',{'b':c,'count':count,'data1':data1})
+
+def cartdetails(request):
+	c=Cart.objects.filter(user_id=request.user.id)
+	
+	sum=0
+	count=0
+	for i in c:
+		count=count+1
+		sum=sum+i.veg.price
+	return render(request,'html/cartdetails.html',{'sum':sum,'count':count,'cart':c})
+
 		
 		
 	

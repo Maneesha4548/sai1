@@ -65,3 +65,7 @@ class UserPro(models.Model):
 	is_status=models.IntegerField(default=0)
 	e=models.ForeignKey(Vegpro,on_delete=models.CASCADE)
 
+class Cart(models.Model):
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
+	veg=models.ForeignKey(Vegpro,on_delete=models.CASCADE)
+

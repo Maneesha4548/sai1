@@ -31,9 +31,15 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'dsh' %}">Dashboard</a>
       </li>
+      <ul class="navbar-nav ml-auto" style="margin-right:50px">
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'cb' %}">My orders</a>
+        <a class="nav-link" href="{% url 'cartdetails' %}">{{count}}<i class="fas fa-cart-plus"></i></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Myorders</a>
+      </li>
+      
+    </ul>
       {% elif user.role == 1 %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'da' %}">Add Items</a>
