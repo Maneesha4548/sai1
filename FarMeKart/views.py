@@ -128,17 +128,28 @@ def itemupdate(request,y):
 
 
 @login_required
-def cart(re):
-	i = Vegpro.objects.filter(a_id=re.user.id)
+def items(request):
+	i = Vegpro.objects.filter(a_id=request.user.id)
+	data=Vegpro.objects.all()
+	for j in i:
+		print("")
 	s = Vegpro.objects.all()
 	k = {}
 	for m in s:
 		g = User.objects.get(id=m.a_id)
 		k[m.id] = m.item_type,m.item_name,m.quantity,m.price,m.impf,m.is_stock,m.create_date,g.username
 	f = k.values()
-	return render(re,'html/cart.html',{'it':i,'d':f})
 
+	return render(request,'html/cart.html',{'data':data,'d':f})
 
+def addcart(request,id):
+	r=Vegpro.objects.get(id=id)
+	if request.method == 'POST':
+		p=Cart(user_id=request.user.id,veg_id=id)
+		p.save()
+		return redirect("/cartdetails")
+	
+	return render(request,'html/cart.html',{'data':r})
 
 def usr(re):
 	s=Userp()
@@ -174,6 +185,9 @@ def userdelete(request,id):
 
 def addcart(request,id):
 	b=Vegpro.objects.get(id=id)
+	print("hi")
+	print(b)
+
 	c=Cart(user_id=request.user.id,veg_id=id)
 	c.save()
 	count=0

@@ -18,7 +18,8 @@ urlpatterns = [
     path('dt/',views.vegf,name="da"),
     path('infodelete/<int:et>',views.infodelete,name='infodelete'),
     path('ed/<int:y>/',views.itemupdate,name="ue"),
-    path('ct/',views.cart,name="ca"),
+    path('items/',views.items,name="items"),
+    path('ct/<int:id>/',views.addcart,name="ca"),
     path('us/',views.usr,name="cb"),
     path('reqp/',views.requestform,name='pm'),
     path('gper/',views.adminpermissions,name='gperm'),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('dele/<int:id>/',views.userdelete,name='delete'),
     path('addcart/<int:id>/',views.addcart,name="addcart"),
     path('cartdetails/',views.cartdetails,name="cartdetails"),
+
 ]
